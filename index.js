@@ -57,10 +57,10 @@ app.get('/profile', (req, res) => {
 app.get('/', function (req, res) {
   
   if(check==1){
-    res.render('login');
+    res.render('login',{imageFileName:'login.ejs'});
   }
   else{
-    res.render('login');
+    res.render('login',{imageFileName:'login.ejs'});
   }
   
 });
@@ -76,7 +76,7 @@ app.post("/login",(req,res)=>{
       res.redirect('contact');
     }
     else{
-      res.render("login");
+      res.redirect('/');;
     }
   })
   .catch((err)=>{
@@ -117,7 +117,7 @@ app.get('/contact', async (req, res) => {
     res.render('contact',{users,user});
   }
   else{
-    res.render('login');
+    res.redirect('/');
   }
 });
 
@@ -150,7 +150,7 @@ app.get('/forum', async (req, res) => {
       }
   }
   else{
-    res.render('login');
+    res.redirect('/');
   }
 });
         
