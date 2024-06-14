@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #4CAF50; /* Green */
+      color: #ffffff; /* White */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+        
+    #back-button:hover {
+        background-color: #3e8e41; /* Darker green on hover */
+    }
+    .user {
+        padding: 20px;
+        background-color: lightblue;
+    }
+    .container{
+      width:80%;
+      margin:40px auto;
+      background-color: #f0f0f0;
+      padding:20px;
+      border:1px solid #ddd;
+    }
+    .chat{
+      width: 50%;
+      padding:10px;
+      margin-bottom:10px;
+      border-radius:10px;
+    }
+
+    .left{
+      background-color: black;
+      color: white;
+    }
+
+    .right{
+      background-color: green;
+      color:white;
+    }
+      
+
+    .serious-dater{
+      font-size: 18px;
+      font-weight: bold;
+      background-color: rgb(255, 255, 255);
+    }
+
+    li{
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="/contact"><div id="back-button">Back to Contacts</div></a>
+    <div class="user"><%= friend %></div>
+  </div>
+
+  <div class="container">
+    <ul>
+
+      <% if(messages){ %>
+        <% messages.container.forEach((e) => { %>
+          <%if(e.chk != me){%>
+            <li>
+              <div class="left chat"><%= e.message %></div>
+              <div class="chat"></div>
+            </li>
+          <%}else{%>
+            <li>
+              <div class="chat"></div>
+              <div class="right chat"><%= e.message %></div>
+            </li>
+          <%}%>
+        <% }); %>
+      <% } %>
+ 
+    </ul>
+
+    <form action="/add-message" method="POST">
+      <textarea rows="4" name="message" placeholder="Type your message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+
+  </div>
+
+</body>
+</html>

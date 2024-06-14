@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #logout-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #4CAF50; /* Green */
+      color: #ffffff; /* White */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }  
+    #logout-button:hover {
+        background-color: #3e8e41; /* Darker green on hover */
+    }
+    .user {
+        padding: 20px;
+        background-color: lightblue;
+    }
+    .radio-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .radio-list li {
+        margin: 10px 20px;
+        background-color: antiquewhite;
+        height:40px;
+    }
+    
+    .radio-list input[type="radio"] {
+        margin-right: 10px;
+    }
+</style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="user">Contacts</div>
+        <a href="/logout"><div id="logout-button">Logout</div></a>
+    </div>
+
+    <div>
+        <form id="myForm" action="/companion" method="POST">
+            <ul class="radio-list">
+                <li>
+                    <input type="radio" id='user' name="option" value=<%= user %> required/>
+                    <label for='user'>Me(You)</label>
+                </li>
+                <% users.forEach(person=>{ %>
+                    <% if(person.name != user){ %>
+                        <li>
+                            <input type="radio" id=<%= person.name %> name="option" value=<%= person.name %> />
+                            <label for=<%= person.name %>><%= person.name %></label>
+                        </li>
+                    <%}%>
+                <%});%>
+            </ul>   
+            <!-- <button id="submit">Get Data</button> -->
+        </form>
+    </div>  
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const radios = document.querySelectorAll('input[type="radio"]');
+        
+        radios.forEach(radio => {
+            radio.addEventListener('click', () => {
+                document.getElementById('myForm').submit();
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!-- <input type="radio" id="option1" name="option" value="option1" />
+<label for="option1">Option 1</label> -->
