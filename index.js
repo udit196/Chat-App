@@ -57,10 +57,10 @@ app.get('/profile', (req, res) => {
 app.get('/', function (req, res) {
   
   if(check==1){
-    res.render('login',{imageFileName:'login.ejs'});
+    res.render('login',{imageFileName:'loginpic.jpg'});
   }
   else{
-    res.render('login',{imageFileName:'login.ejs'});
+    res.render('login',{imageFileName:'loginpic.jpg'});
   }
   
 });
@@ -86,7 +86,7 @@ app.post("/login",(req,res)=>{
 
 // register page 
 app.get('/register' , function(req,res){
-  res.render('register');
+  res.render('register',{imageFileName:'loginpic.jpg'});
 });
 
 app.post("/register",(req,res)=>{
